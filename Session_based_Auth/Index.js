@@ -1,4 +1,4 @@
-const express = reqire("express");
+const express = require("express");
 const sessions = require("express-session");
 require("dotenv").config();
 
@@ -22,3 +22,15 @@ app.use(express.urlencoded({ extended: true })); // parses the incming html form
 app.listen(3000, () => {
   console.log("Server is running on port 3000");
 });
+
+const HomeHandler = require("./handlers/home.js"); //import handler
+app.get("/", HomeHandler); // register the homapge handler
+
+const LoginHandler = require("./handlers/login.js"); // importsd handler for login page
+app.get("/login", LoginHandler); // register login page handler
+
+const processLogin = require("./handlers/process-login.js"); // imports the handler for processing login
+app.post("/process-login", processLogin); // register the handler for processing login
+
+const Logout = require("./handlers/logout.js"); // imports the handler for logout
+app.get("/logout", Logout); // register the handler for logout
